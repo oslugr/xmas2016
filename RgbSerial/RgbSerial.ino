@@ -12,16 +12,14 @@ void setup(){
   pinMode(rojo, OUTPUT);
   pinMode(verde, OUTPUT); 
   pinMode(azul, OUTPUT); 
-
-   
 }
- 
+
 void loop(){
   //si existe datos disponibles los leemos
   if (Serial.available()>0){
     //leemos la opcion enviada
     option=Serial.read();
-    //Progamacion para Led Rojo
+    //Programacion para Led Rojo
     if(option=='0') {
       digitalWrite(rojo, LOW);
       Serial.println("OFF");
@@ -30,7 +28,7 @@ void loop(){
       digitalWrite(rojo, HIGH);
       Serial.println("ON");
     }
-    //Progamacion para Led Verde
+    //Programacion para Led Verde
      if(option=='2') {
       digitalWrite(verde, LOW);
       Serial.println("OFF");
@@ -39,7 +37,7 @@ void loop(){
       digitalWrite(verde, HIGH);
       Serial.println("ON");
     }
-    //Progamacion para Led Azul
+    //Programacion para Led Azul
      if(option=='4') {
       digitalWrite(azul, LOW);
       Serial.println("OFF");
@@ -47,8 +45,7 @@ void loop(){
     else if(option=='5') {
       digitalWrite(azul, HIGH);
       Serial.println("ON");
-    }
-      
+    }  
   }
 }
 
