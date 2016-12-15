@@ -4,8 +4,8 @@ int verde = 7;
 int azul = 8;
 
 int intervalr = 1000;
-int intervalg = 1000;
-int intervalb = 1000;
+int intervalv = 1000;
+int intervala = 1000;
 
 int kvelocidad = 10;
 
@@ -13,6 +13,15 @@ int ledStater = LOW;             // ledState used to set the LED
 
 long previousMillisr = 0;        // will store last time LED was updated
 
+
+int ledStatev = LOW;             // ledState used to set the LED
+
+long previousMillisv = 0;        // will store last time LED was updated
+
+
+int ledStatea = LOW;             // ledState used to set the LED
+
+long previousMillisa = 0;        // will store last time LED was updated
 
 
 void setup() {
@@ -68,6 +77,36 @@ void loop() {
 
     // set the LED with the ledState of the variable:
     digitalWrite(rojo, ledStater);
+    
+    
+     if(currentMillis - previousMillisv > intervalv) {
+    // save the last time you blinked the LED 
+    previousMillisv = currentMillis;   
+
+    // if the LED is off turn it on and vice-versa:
+    if (ledStatev == LOW)
+      ledStatev = HIGH;
+    else
+      ledStatev = LOW;
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(verde, ledStater);
+    
+     if(currentMillis - previousMillisa > intervala) {
+    // save the last time you blinked the LED 
+    previousMillisa = currentMillis;   
+
+    // if the LED is off turn it on and vice-versa:
+    if (ledStatea == LOW)
+      ledStatea = HIGH;
+    else
+      ledStatea = LOW;
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(azul, ledStatera);
+    
+    
+    
   }
 
 
