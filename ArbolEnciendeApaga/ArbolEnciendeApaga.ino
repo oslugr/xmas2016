@@ -1,3 +1,10 @@
+/* Parpadeo de tres tiras de led de color rojo, verde y azul, a las que se les pasa un número de 6 cifras, siendo las dos primeras las que determinan la velocidad
+ * de parpadeo del led rojo, las dos siguientes al led verde y las dos últimas a la tira azul.
+ *  
+ * Con la inestimable colaboración de Renato y Pablo, sin ellos no sería posible.
+ */
+
+
 // Declaramos los pines donde estan conectados los RGB
 int rojo = 13;
 int verde = 7;
