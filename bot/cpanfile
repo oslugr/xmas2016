@@ -1,0 +1,2 @@
+requires 'Mojo::Base';
+requires 'Telegram::Bot::Brain';
