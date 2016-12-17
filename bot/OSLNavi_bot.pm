@@ -35,17 +35,20 @@ sub response {
   tie my @words, 'Tie::File', $self->filename or die "Fichero de palabras roto $!";
 
   push @words, $word;
-  if ($msg->chat->is_user) {
-    $self->send_message_to_chat_id($msg->chat->id, "Dijiste la palabra");
-  }
-  else {   # group chat
-    $self->send_message_to_chat_id($msg->chat->id, "La palabra ha sido dicha");
-  }
+}
+
+sub count_words {
+  my $self = shift;
+  tie my @words, 'Tie::File', $self->filename or die "Fichero de palabras roto $!";
+  my %count;
+  map( $count{lc($_)}++, @words);
+#  say Dumper %count;
 }
 
 sub init {
     my $self = shift;
     $self->add_listener(\&check, \&response);
+    $self->add_repeating_task(3, \&count_words);
     open my $file, ">", $self->filename;
     close $file;
 }
