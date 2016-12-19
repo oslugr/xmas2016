@@ -7,8 +7,8 @@
 
 // Declaramos los pines donde estan conectados los RGB
 int rojo = 13;
-int verde = 7;
-int azul = 8;
+int verde = 12;
+int azul = 11;
 
 //Declaramos el intervalo de tiempo del parpadeo de cada led
 
