@@ -57,10 +57,10 @@ sub count_words {
       say Dumper @numbers;
   }
   say Dumper @numbers;
-  open( my $port, ">", "/dev/ttyACM0" );
+  #open( my $port, ">", "/dev/ttyACM0" );
   #  print $port join("",@numbers);
-  print $port "115599";
-  close $port;
+  #print $port "115599";
+  #close $port;
   say join("", @numbers);
 
 }
@@ -68,7 +68,7 @@ sub count_words {
 sub init {
     my $self = shift;
     $self->add_listener(\&check, \&response);
-    $self->add_repeating_task(30, \&count_words);
+    $self->add_repeating_task(10, \&count_words);
     open my $file, ">", $self->filename;
     close $file;
 }
