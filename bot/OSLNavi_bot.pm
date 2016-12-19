@@ -53,7 +53,7 @@ sub count_words {
   say $total;
   for my $w (sort keys %count) {
       say "$w, $count{$w}, $count{$w}/$total";
-      push @numbers, 99-int( 100*$count{$w}/$total);
+      push @numbers, int( 100*$count{$w}/$total);
       say Dumper @numbers;
   }
   say Dumper @numbers;
