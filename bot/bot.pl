@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+use local::lib;
+
 use OSLNavi_bot;
 
 use v5.14;

@@ -5,12 +5,14 @@ use warnings;
 use v5.16;
 use Data::Dumper;
 use Tie::File;
+use local::lib;
+
 
 use Mojo::Base 'Telegram::Bot::Brain';
 
 has filename => "/tmp/words.csv";
 has 'token';
-has regex    => sub { return qr/(koala|[Nn]avidad|PHP)/};
+has regex    => sub { return qr/(koala|[Nn]avidad|hate)/};
 
 
 sub check {
@@ -42,13 +44,31 @@ sub count_words {
   tie my @words, 'Tie::File', $self->filename or die "Fichero de palabras roto $!";
   my %count;
   map( $count{lc($_)}++, @words);
-#  say Dumper %count;
+  my $total = 0;
+  for my $w (keys %count) {
+      $total+=$count{$w};
+  }
+  say Dumper %count;
+  my @numbers;
+  say $total;
+  for my $w (sort keys %count) {
+      say "$w, $count{$w}, $count{$w}/$total";
+      push @numbers, 99-int( 100*$count{$w}/$total);
+      say Dumper @numbers;
+  }
+  say Dumper @numbers;
+  open( my $port, ">", "/dev/ttyACM0" );
+  #  print $port join("",@numbers);
+  print $port "115599";
+  close $port;
+  say join("", @numbers);
+
 }
 
 sub init {
     my $self = shift;
     $self->add_listener(\&check, \&response);
-    $self->add_repeating_task(3, \&count_words);
+    $self->add_repeating_task(30, \&count_words);
     open my $file, ">", $self->filename;
     close $file;
 }
