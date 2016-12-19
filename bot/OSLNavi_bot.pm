@@ -48,20 +48,14 @@ sub count_words {
   for my $w (keys %count) {
       $total+=$count{$w};
   }
-  say Dumper %count;
   my @numbers;
   say $total;
   for my $w (sort keys %count) {
-      say "$w, $count{$w}, $count{$w}/$total";
-      push @numbers, int( 100*$count{$w}/$total);
-      say Dumper @numbers;
+      push @numbers, int( 100*(1-$count{$w}/$total));
   }
-  say Dumper @numbers;
-  #open( my $port, ">", "/dev/ttyACM0" );
-  #  print $port join("",@numbers);
-  #print $port "115599";
-  #close $port;
-  say join("", @numbers);
+  open( my $port, ">", "/dev/ttyACM0" );
+  print $port join("",@numbers);
+  close $port;
 
 }
 
