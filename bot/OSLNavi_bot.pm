@@ -29,12 +29,10 @@ sub check {
 
 sub response {
   my ($self, $msg) = @_;
-
-  # is this a 1-on-1 ?
-  my ($word) = ( $msg->text =~ $self->regex );
+  my @terms = ( $msg->text =~ /(koala|[Nn]avidad|hate)/g );
   tie my @words, 'Tie::File', $self->filename or die "Fichero de palabras roto $!";
 
-  push @words, $word;
+  push @words, @terms;
 }
 
 sub count_words {
@@ -47,7 +45,6 @@ sub count_words {
       $total+=$count{$w};
   }
   my @numbers;
-  say $total;
   for my $w (sort keys %count) {
       push @numbers, int( 100*(1-$count{$w}/$total));
   }
