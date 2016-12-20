@@ -17,8 +17,6 @@ has regex    => sub { return qr/(koala|[Nn]avidad|hate)/};
 
 sub check {
   my ($self, $msg) = @_;
-##  say Dumper( $msg );
-##  say Dumper( $msg->chat );
 
   # Busca el regex
   return 0 if !$msg->text;
